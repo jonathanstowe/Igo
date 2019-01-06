@@ -26,24 +26,27 @@ class Igo {
 
     has Oyatul::Layout $.layout;
 
-    method layout(--> Oyatul::Layout) {
-        $!layout = do {
+    method layout( --> Oyatul::Layout ) {
+        $!layout //= do {
             if $.layout-path.f {
                 Oyatul::Layout.from-json(path => $.layout-path);
             }
             else {
-                my $layout = Oyatul::Layout.generate(root => $!directory);
-                $.layout-path.spurt: $layout.to-json;
-                $layout;
+                self.create-layout;
             }
-
         }
+    }
+
+    method create-layout(--> Oyatul::Layout ) {
+        my $layout = Oyatul::Layout.generate(root => $!directory);
+        $.layout-path.spurt: $layout.to-json;
+        $layout;
     }
 
     has META6 $.meta;
 
     method meta(--> META6) {
-        $!meta = do  {
+        $!meta //= do  {
             META6.new(file => $.meta-path);
         }
     }
