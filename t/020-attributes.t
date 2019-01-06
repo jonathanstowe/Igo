@@ -24,9 +24,16 @@ for $obj.distribution-files -> $file {
     ok $file.f, "$file exists";
 }
 
+lives-ok {
+ $obj.create-archive;
+}, "create-archive";
+
+ok $obj.archive-path.f, "archive exists";
+
 
 LEAVE {
     $obj.layout-path.unlink;
+    $obj.archive-path.unlink;
 }
 
 done-testing;

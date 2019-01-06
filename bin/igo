@@ -1,0 +1,17 @@
+#!/usr/bin/env perl6
+
+
+use Archive::Libarchive;
+use CPAN::Uploader::Tiny;
+use META6;
+use Oyatul;
+use XDG::BaseDirectory;
+
+sub MAIN(IO() :$directory where *.d = '.' ) {
+    my Oyatul::Layout $layout = 
+
+
+}
+
+
+# vim: expandtab shiftwidth=4 ft=perl6

@@ -52,7 +52,15 @@ class Igo {
 
     method distribution-name(--> Str) {
         $!distribution-name //= do {
-            $.meta.name.substr('::', '-', :g);
+            $.meta.name.subst('::', '-', :g);
+        }
+    }
+
+    has Str $!archive-directory;
+
+    method archive-directory(--> Str) {
+        $!archive-directory = do {
+            "{ $.distribution-name }-{ $.meta.version }";
         }
     }
 
@@ -60,7 +68,7 @@ class Igo {
 
     method archive-name(--> Str) {
         $!archive-name //= do {
-            "{ $.distribution-name }-{ $.meta.version }.tar.gz";
+            "{ $.archive-directory }.tar.gz";
         }
     }
 
@@ -76,17 +84,22 @@ class Igo {
         $.layout.all-children.map(*.IO).grep(*.f);
     }
 
-    my Archive::Libarchive $!archive;
+    has Archive::Libarchive $!archive;
 
-    method archive(--> Archive::Libarchive) {
-        $!archive = do {
-            Archive::Libarchive.new(operation => LibarchiveOverwrite, file => $.archive-path, format => 'v7tar', filters => <gzip>);
+    method archive(--> Archive::Libarchive) handles <write-header write-data close> {
+        $!archive //= do {
+            Archive::Libarchive.new(operation => LibarchiveOverwrite, file => $.archive-path.path, format => 'v7tar', filters => [<gzip>]);
         }
     }
 
+    method create-archive() {
+        for $.distribution-files.list -> $file {
+            $.write-header($.archive-directory ~ '/' ~ $file.path, size => $file.s, atime => $file.accessed.Int, ctime => $file.changed.Int, mtime => $file.modified.Int);
+            $.write-data($file.path);
+        }
+        $.close;
+    }
 
 }
 
-
-
-# vim: expandtab shiftwidth=4 ft=perl6
+# vim: ft=perl6 sw=4 ts=4 ai
