@@ -94,12 +94,11 @@ class Igo {
 
     method create-archive() {
         for $.distribution-files.list -> $file {
-            $.write-header($.archive-directory ~ '/' ~ $file.path, size => $file.s, atime => $file.accessed.Int, ctime => $file.changed.Int, mtime => $file.modified.Int);
+            $.write-header($.archive-directory ~ '/' ~ $file.path, size => $file.s, atime => $file.accessed.Int, ctime => $file.changed.Int, mtime => $file.modified.Int, perm => $file.mode);
             $.write-data($file.path);
         }
         $.close;
     }
-
 }
 
 # vim: ft=perl6 sw=4 ts=4 ai
