@@ -1,16 +1,14 @@
 {
   "name": "Igo",
-  "source-url": "-git://github.com/jonathanstowe/Igo.git",
+  "source-url": "git://github.com/jonathanstowe/Igo.git",
   "support": {
     "email": "jns+gh@gellyfish.co.uk",
-    "source": "-git://github.com/jonathanstowe/Igo.git"
+    "source": "git://github.com/jonathanstowe/Igo.git"
   },
-  "perl": "6.c",
+  "perl": "6.*",
   "resources": [
-    
   ],
   "build-depends": [
-    
   ],
   "auth": "github:jonathanstowe",
   "depends": [
@@ -33,6 +31,7 @@
   },
   "version": "0.0.1",
   "meta-version": "0",
+  "api" : "1.0",
   "authors": [
     "Jonathan Stowe <jns+gh@gellyfish.co.uk>"
   ],
