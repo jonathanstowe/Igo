@@ -118,7 +118,7 @@ class Igo {
         if self.load-config-paths('igo').head -> $p {
             $f = $p.add: "pause.ini";
         }
-        $p;
+        $f;
     }
 
     has CPAN::Uploader::Tiny $!uploader;
@@ -143,7 +143,7 @@ class Igo {
                 CPAN::Uploader::Tiny.new(user => $!username, :$!password);
 
             }
-            elsif self.config-file.?e {
+            elsif self.config-file.defined && self.config-file.f {
                 CPAN::Uploader::Tiny.new-from-config(self.config-file.Str)
             }
             else {

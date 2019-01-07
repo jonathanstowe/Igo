@@ -30,6 +30,20 @@ lives-ok {
 
 ok $obj.archive-path.f, "archive exists";
 
+%*ENV<XDG_CONFIG_HOME> = "babababaaa"; # just in case we have one
+
+throws-like { $obj.uploader }, X::NoPauseCredentials, "no username/password or config";
+
+$obj = Igo.new(directory => $dist-path, username => "foo", password => "bar");
+
+lives-ok { isa-ok $obj.uploader, "CPAN::Uploader::Tiny" }, "uploader with username and password";
+
+%*ENV<XDG_CONFIG_HOME> = $*PROGRAM.parent.add("config").Str;
+
+$obj = Igo.new(directory => $dist-path);
+
+lives-ok { isa-ok $obj.uploader, "CPAN::Uploader::Tiny" }, "uploader with config";
+
 
 LEAVE {
     $obj.layout-path.unlink;
