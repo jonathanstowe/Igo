@@ -2,6 +2,8 @@
 
 use Igo;
 
+my %*SUB-MAIN-OPTS = :named-anywhere;
+
 #| Create a .layout for further editing
 multi sub MAIN('create-layout', IO() :$directory where *.d = '.' ) {
     Igo.new(:$directory).create-layout
