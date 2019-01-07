@@ -2,12 +2,19 @@
 
 use Igo;
 
+#| Create a .layout for further editing
 multi sub MAIN('create-layout', IO() :$directory where *.d = '.' ) {
     Igo.new(:$directory).create-layout
 }
 
+#| Create the archive file
 multi sub MAIN('create-archive', IO() :$directory where *.d = '.' ) {
     Igo.new(:$directory).create-archive
+}
+
+#| Create archive and upload to PAUSE
+multi sub MAIN('upload', Str :$username, Str :$password, IO() :$directory where *.d = '.' ) {
+    Igo.new(:$username, :$password, :$directory).upload;
 }
 
 # vim: expandtab shiftwidth=4 ft=perl6

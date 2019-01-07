@@ -10,6 +10,9 @@ class Igo {
     has IO::Path $.directory is required where *.d;
     has IO::Path $.layout-path;
 
+    has Str $.username;
+    has Str $.password;
+
     method layout-path(--> IO::Path ) {
         $!layout-path //= do {
             $!directory.add: '.layout';
@@ -78,7 +81,7 @@ class Igo {
     has IO::Path $!archive-path;
 
     method archive-path(--> IO::Path) {
-        $!archive-path = do {
+        $!archive-path //= do {
             $!directory.add: $.archive-name;
         }
     }
@@ -102,6 +105,61 @@ class Igo {
         }
         $.close;
     }
+
+    has XDG::BaseDirectory $!xdg-basedirectory;
+
+    method xdg-basedirectory( --> XDG::BaseDirectory ) handles <load-config-paths> {
+        $!xdg-basedirectory //= XDG::BaseDirectory.new;
+    }
+
+    method config-file(--> IO::Path ) {
+        my IO::Path $f;
+
+        if self.load-config-paths('igo').head -> $p {
+            $f = $p.add: "pause.ini";
+        }
+        $p;
+    }
+
+    has CPAN::Uploader::Tiny $!uploader;
+
+    class X::NoPauseCredentials is Exception {
+        has Str $.message;
+        method message( --> Str ) {
+            $!message //= q:to/EOEO/;
+            No PAUSE credentials found either supply 'username' and 'password'
+            or create the file '~/.config/igo/pause.ini' containing:
+
+                user=<username>
+                password=<password>
+
+           EOEO
+        }
+    }
+
+    method uploader( --> CPAN::Uploader::Tiny ) {
+        $!uploader //= do {
+            if ( $!username && $!password ) {
+                CPAN::Uploader::Tiny.new(user => $!username, :$!password);
+
+            }
+            elsif self.config-file.?e {
+                CPAN::Uploader::Tiny.new-from-config(self.config-file.Str)
+            }
+            else {
+                X::NoPauseCredentials.new.throw;
+            }
+        }
+    }
+
+    method upload( --> Bool ) {
+        if !$.archive-path.e {
+            self.create-archive;
+        }
+        $.uploader.upload($.archive-path.path);
+    }
+
+
 }
 
 # vim: ft=perl6 sw=4 ts=4 ai
