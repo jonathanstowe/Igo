@@ -3,7 +3,8 @@
   "source-url": "git://github.com/jonathanstowe/Igo.git",
   "support": {
     "email": "jns+gh@gellyfish.co.uk",
-    "source": "git://github.com/jonathanstowe/Igo.git"
+    "source": "git://github.com/jonathanstowe/Igo.git",
+    "bugtracker": "https://github.com/jonathanstowe/Igo/issues"
   },
   "perl": "6.*",
   "resources": [
@@ -29,7 +30,7 @@
   "provides": {
 	"Igo" :  "lib/Igo.pm"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "meta-version": "0",
   "api" : "1.0",
   "authors": [
