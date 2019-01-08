@@ -130,8 +130,8 @@ class Igo {
             No PAUSE credentials found either supply 'username' and 'password'
             or create the file '~/.config/igo/pause.ini' containing:
 
-                user=<username>
-                password=<password>
+                user <username>
+                password <password>
 
            EOEO
         }
