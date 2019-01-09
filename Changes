@@ -1,3 +1,5 @@
+v0.0.5  Wed  9 Jan 09:30:00 GMT 2019
+    * Remedy return type of upload
 v0.0.4  Wed  9 Jan 09:15:33 GMT 2019
     * Remove archive after upload unless '--keep' provided
 v0.0.3  Tue  8 Jan 09:42:41 GMT 2019

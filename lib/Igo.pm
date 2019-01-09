@@ -86,10 +86,11 @@ class Igo {
         }
     }
 
-    method cleanup(Bool :$keep = False ) {
+    method cleanup(Bool :$keep = False --> Bool) {
         if !$keep {
             self.archive-path.unlink;
         }
+        True;
     }
 
     method distribution-files() {
@@ -162,8 +163,9 @@ class Igo {
         if !$.archive-path.e {
             self.create-archive;
         }
-        $.uploader.upload($.archive-path.path);
+        my $rc = $.uploader.upload($.archive-path.path);
         self.cleanup(:$keep);
+        $rc;
     }
 }
 
