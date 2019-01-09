@@ -1,3 +1,5 @@
+v0.0.4  Wed  9 Jan 09:15:33 GMT 2019
+    * Remove archive after upload unless '--keep' provided
 v0.0.3  Tue  8 Jan 09:42:41 GMT 2019
     * Handle errors more nicely
 v0.0.2  Mon  7 Jan 20:43:51 GMT 2019

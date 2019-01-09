@@ -86,6 +86,12 @@ class Igo {
         }
     }
 
+    method cleanup(Bool :$keep = False ) {
+        if !$keep {
+            self.archive-path.unlink;
+        }
+    }
+
     method distribution-files() {
         $.layout.all-children.map(*.IO).grep(*.f);
     }
@@ -152,14 +158,13 @@ class Igo {
         }
     }
 
-    method upload( --> Bool ) {
+    method upload( Bool :$keep = False --> Bool ) {
         if !$.archive-path.e {
             self.create-archive;
         }
         $.uploader.upload($.archive-path.path);
+        self.cleanup(:$keep);
     }
-
-
 }
 
 # vim: ft=perl6 sw=4 ts=4 ai

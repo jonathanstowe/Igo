@@ -30,7 +30,7 @@
   "provides": {
 	"Igo" :  "lib/Igo.pm"
   },
-  "version": "0.0.3",
+  "version": "0.0.4",
   "meta-version": "0",
   "api" : "1.0",
   "authors": [
