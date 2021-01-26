@@ -1,16 +1,18 @@
 # Igo
 
-An expedient CPAN uploader for Perl 6
+An expedient CPAN uploader for Raku
+
+![Build Status](https://github.com/jonathanstowe/Igo/workflows/CI/badge.svg)
 
 ## Synopsis
 
-	igo create-layout [--directory=.]
+    igo create-layout [--directory=.]
     igo create-archive  [--directory=.]
     igo upload --user=<user> --password=<password>  [--directory=.]
 
 ## Description
 
-This provides a simple way to upload Perl 6 modules to CPAN.  
+This provides a simple way to upload Raku modules to CPAN.  
 
 I made it because I found that other things either took over the whole
 workflow, or didn't do enough.
@@ -72,10 +74,9 @@ it isn't well documented for the time being.
 
 ## Installation
 
-This uses [Archive::LibArchive](https://modules.perl6.org/dist/Archive::Libarchive:cpan:FRITH) to make the tarball to upload, so you will need to have ```libarchive``` installed, either via your platform's package manager or by some other means.  I don't know if it is available for Windows.
+This uses [Archive::LibArchive](https://modules.raku.org/dist/Archive::Libarchive:cpan:FRITH) to make the tarball to upload, so you will need to have ```libarchive``` installed, either via your platform's package manager or by some other means.  I don't know if it is available for Windows.
 
-Assuming you have a working perl6 installation you should be able to
-install this with *zef* :
+Assuming you have a working Rakudo installation you should be able to install this with *zef* :
 
     # From the source directory
 
@@ -87,8 +88,7 @@ install this with *zef* :
 
 ## Support
 
-Suggestions and patches that may make this more useful in your software
-are welcomed via github at
+Suggestions and patches that may make this more useful in your software are welcomed via github at
 
 https://github.com/jonathanstowe/Igo/issues
 
@@ -98,5 +98,5 @@ This is free software.
 
 Please see the [LICENCE](LICENCE) file in the distribution.
 
-© Jonathan Stowe 2019
+© Jonathan Stowe 2019 - 2021
 

@@ -169,4 +169,4 @@ class Igo {
     }
 }
 
-# vim: ft=perl6 sw=4 ts=4 ai
+# vim: ft=raku sw=4 ts=4 ai

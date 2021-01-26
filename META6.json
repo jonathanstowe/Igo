@@ -1,5 +1,11 @@
 {
   "name": "Igo",
+  "version": "0.0.6",
+  "api" : "1.0",
+  "description": "Expedient CPAN6 distribution packager and uploader",
+  "authors": [
+    "Jonathan Stowe <jns+gh@gellyfish.co.uk>"
+  ],
   "source-url": "git://github.com/jonathanstowe/Igo.git",
   "support": {
     "email": "jns+gh@gellyfish.co.uk",
@@ -7,34 +13,33 @@
     "bugtracker": "https://github.com/jonathanstowe/Igo/issues"
   },
   "perl": "6.*",
+  "raku": "6.*",
+  "depends": {
+     "build" : {
+        "requires" : [
+        ]
+     },
+     "runtime": {
+        "requires": [
+            "Archive::Libarchive",
+            "CPAN::Uploader::Tiny",
+            "META6",
+            "Oyatul",
+            "XDG::BaseDirectory"
+        ]
+     }
+  },
   "resources": [
   ],
-  "build-depends": [
-  ],
   "auth": "github:jonathanstowe",
-  "depends": [
-	"Archive::Libarchive",
-	"CPAN::Uploader::Tiny",
-	"META6",
-	"Oyatul",
-	"XDG::BaseDirectory"
-  ],
   "tags": [
 	"cpan6",
 	"packager",
 	"uploader"
   ],
   "license": "Artistic-2.0",
-  "test-depends": [
-  ],
   "provides": {
 	"Igo" :  "lib/Igo.pm"
   },
-  "version": "0.0.5",
-  "meta-version": "0",
-  "api" : "1.0",
-  "authors": [
-    "Jonathan Stowe <jns+gh@gellyfish.co.uk>"
-  ],
-  "description": "Expedient CPAN6 distribution packager and uploader"
+  "meta-version": "1"
 }

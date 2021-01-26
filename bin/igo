@@ -1,4 +1,4 @@
-#!/usr/bin/env perl6
+#!/usr/bin/env raku
 
 use Igo;
 
@@ -32,4 +32,4 @@ multi sub MAIN('clean', IO() :$directory where *.IO.d = '.' ) {
     Igo.new(:$directory).cleanup;
 }
 
-# vim: expandtab shiftwidth=4 ft=perl6
+# vim: expandtab shiftwidth=4 ft=raku
