@@ -17,6 +17,12 @@ jobs:
 
     - uses: actions/checkout@v2
 
+    - name: apt-get update
+      run:  apt-get update
+
+    - name: install libarchive
+      run:  apt-get install -y libarchive13
+
     - name: Raku version
       run: raku -v
 
