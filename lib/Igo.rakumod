@@ -94,7 +94,7 @@ class Igo {
     }
 
     method distribution-files() {
-        $.layout.all-children.map(*.IO).grep(*.f);
+        $.layout.all-children.grep(Oyatul::File).map(*.IO);
     }
 
     has Archive::Libarchive $!archive;
@@ -105,10 +105,24 @@ class Igo {
         }
     }
 
+    class X::Igo::NoFile is Exception {
+        has IO::Path $.file is required;
+
+        method message(--> Str) {
+            "The distribution file { $!file.path } does not exist, do you need to update your layout?";
+        }
+
+    }
+
     method create-archive() {
         for $.distribution-files.list -> $file {
-            $.write-header($.archive-directory ~ '/' ~ $file.path, size => $file.s, atime => $file.accessed.Int, ctime => $file.changed.Int, mtime => $file.modified.Int, perm => $file.mode);
-            $.write-data($file.path);
+            if ( $file.e ) {
+                $.write-header($.archive-directory ~ '/' ~ $file.path, size => $file.s, atime => $file.accessed.Int, ctime => $file.changed.Int, mtime => $file.modified.Int, perm => $file.mode);
+                $.write-data($file.path);
+            }
+            else {
+                X::Igo::NoFile.new( :$file ).throw;
+            }
         }
         $.close;
     }

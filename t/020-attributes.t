@@ -1,10 +1,11 @@
 #!/usr/bin/env raku
 
-use v6.c;
+use v6;
 
 use Test;
 
 use Igo;
+use Oyatul;
 
 my $obj;
 
@@ -44,6 +45,21 @@ $obj = Igo.new(directory => $dist-path);
 
 lives-ok { isa-ok $obj.uploader, "CPAN::Uploader::Tiny" }, "uploader with config";
 
+my Str $duf-layout = q:to/EOLAY/;
+{
+   "type" : "layout",
+   "children" : [
+       {
+           "type": "file",
+           "name" : "zziziz"
+       }
+   ]
+}
+EOLAY
+
+$obj = Igo.new(directory => $dist-path, layout => Oyatul::Layout.from-json($duf-layout, root => $dist-path.Str ) );
+
+throws-like { $obj.create-archive }, X::Igo::NoFile, 'throws with missing file in layout';
 
 LEAVE {
     $obj.layout-path.unlink;

@@ -1,8 +1,8 @@
 {
   "name": "Igo",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "api" : "1.0",
-  "description": "Expedient CPAN6 distribution packager and uploader",
+  "description": "Expedient CPAN distribution packager and uploader",
   "authors": [
     "Jonathan Stowe <jns+gh@gellyfish.co.uk>"
   ],
@@ -39,7 +39,7 @@
   ],
   "license": "Artistic-2.0",
   "provides": {
-	"Igo" :  "lib/Igo.pm"
+	"Igo" :  "lib/Igo.rakumod"
   },
   "meta-version": "1"
 }
