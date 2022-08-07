@@ -1,45 +1,48 @@
 {
-  "name": "Igo",
-  "version": "0.0.7",
-  "api" : "1.0",
+  "build-depends": [
+  ],
+  "version": "0.0.8",
+  "depends": {
+    "runtime": {
+      "requires": [
+        "Archive::Libarchive",
+        "CPAN::Uploader::Tiny",
+        "META6",
+        "Oyatul",
+        "XDG::BaseDirectory"
+      ]
+    },
+    "build": {
+      "requires": [
+      ]
+    }
+  },
+  "api": "1.0",
   "description": "Expedient CPAN distribution packager and uploader",
+  "raku": "6.*",
+  "license": "Artistic-2.0",
+  "tags": [
+    "cpan6",
+    "packager",
+    "uploader"
+  ],
+  "source-url": "git://github.com/jonathanstowe/Igo.git",
   "authors": [
     "Jonathan Stowe <jns+gh@gellyfish.co.uk>"
   ],
-  "source-url": "git://github.com/jonathanstowe/Igo.git",
-  "support": {
-    "email": "jns+gh@gellyfish.co.uk",
-    "source": "git://github.com/jonathanstowe/Igo.git",
-    "bugtracker": "https://github.com/jonathanstowe/Igo/issues"
-  },
-  "perl": "6.*",
-  "raku": "6.*",
-  "depends": {
-     "build" : {
-        "requires" : [
-        ]
-     },
-     "runtime": {
-        "requires": [
-            "Archive::Libarchive",
-            "CPAN::Uploader::Tiny",
-            "META6",
-            "Oyatul",
-            "XDG::BaseDirectory"
-        ]
-     }
-  },
   "resources": [
   ],
-  "auth": "github:jonathanstowe",
-  "tags": [
-	"cpan6",
-	"packager",
-	"uploader"
-  ],
-  "license": "Artistic-2.0",
   "provides": {
-	"Igo" :  "lib/Igo.rakumod"
+    "Igo": "lib/Igo.rakumod"
   },
-  "meta-version": "1"
+  "support": {
+    "bugtracker": "https://github.com/jonathanstowe/Igo/issues",
+    "email": "jns+gh@gellyfish.co.uk",
+    "source": "git://github.com/jonathanstowe/Igo.git"
+  },
+  "name": "Igo",
+  "auth": "zef:jonathanstowe",
+  "meta-version": "1",
+  "test-depends": [
+  ]
 }

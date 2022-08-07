@@ -1,3 +1,5 @@
+v0.0.8	Sun  7 Aug 09:42:17 BST 2022
+	* Upload to zef repository
 v0.0.7	Wed 22 Sep 13:26:55 BST 2021
 	* Throw an exception if file in layout missing
 v0.0.6	Tue 26 Jan 11:53:38 GMT 2021
@@ -12,3 +14,4 @@ v0.0.2  Mon  7 Jan 20:43:51 GMT 2019
 	* :named-anywhere so it matches documentation
 v0.0.1	Mon  7 Jan 20:02:30 GMT 2019
 	* Initial Release
+
